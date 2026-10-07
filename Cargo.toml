@@ -1,6 +1,6 @@
 [package]
 name = "ws2812-esp32-rmt-driver"
-version = "0.15.0-alpha.1"
+version = "0.15.0"
 license = "MIT"
 authors = ["@cat_in_136"]
 categories = ["embedded", "hardware-support"]
@@ -18,8 +18,8 @@ embedded-graphics-core = { version = "0.4", optional = true }
 heapless = { version = "0.8", optional = true }
 
 [target.'cfg(target_vendor = "espressif")'.dependencies]
-esp-idf-hal = { version = "0.46", default-features = false }
-esp-idf-sys = { version = "0.37", default-features = false }
+esp-idf-hal = { version = "0.47", default-features = false }
+esp-idf-sys = { version = "0.38", default-features = false }
 
 [target.'cfg(not(target_vendor = "espressif"))'.dependencies]
 paste = "1"
@@ -38,10 +38,12 @@ embedded-graphics = "0.8"
 embuild = "0.33"
 
 [profile.release]
+panic = "abort"
 strip = true
 opt-level = "s"
 
 [profile.dev]
+panic = "abort"
 debug = true # Symbols are nice and they don't increase the size on Flash
 strip = true
 opt-level = "z"
